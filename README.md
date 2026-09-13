@@ -45,8 +45,8 @@ cp -r skill <your-repo>/.claude/skills/diagram-authoring
 
 Requirements on the machine that renders:
 - `dot` (graphviz)
-- `python3` with `pycairo`, `python-bidi`, and `Pillow`
-- DejaVu Sans (has Hebrew glyphs). No inkscape / rsvg / cairosvg / chromium needed.
+- `python3` with the packages in `requirements.txt` (`pycairo`, `Pillow`, `numpy`) — `pip install -r requirements.txt`
+- a TrueType font — DejaVu Sans by default; override with the `DIAGRAM_FONT` env var. No inkscape / rsvg / cairosvg / chromium needed.
 
 ## Quickstart
 

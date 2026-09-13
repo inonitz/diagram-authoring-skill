@@ -15,7 +15,7 @@ Usage: python3 check.py <input.dot> [<rendered.png>]
 import subprocess, sys, math, re, os, json, cairo
 
 TIGHT_MARGIN_IN = 0.4
-FONT = "DejaVu Sans"
+FONT = os.environ.get("DIAGRAM_FONT", "DejaVu Sans")
 EDGE_LABEL_FONT_SIZE = 9
 LINE_SPACING = 1.18
 POINTS_PER_INCH = 72

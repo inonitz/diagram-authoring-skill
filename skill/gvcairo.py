@@ -9,14 +9,14 @@ Writes:  <output-basename>.svg
          <output-basename>.png   (rendered at 2x)
          <output-basename>.routes.json   (the final edge routes, for check.py to measure)
 """
-import cairo, math, subprocess, json, sys, re
+import cairo, math, subprocess, json, sys, re, os
 from dataclasses import dataclass
 
 # All distances below are in PostScript points, the unit graphviz reports.
 PAGE_MARGIN = 24            # blank border around the whole drawing
 TITLE_BAND = 44             # height reserved at the top for the graph title, above the content
 MIN_ROUTE_MARGIN = 0.4 * 72 # keep an edge at least this far from any box it does not connect to
-FONT = "DejaVu Sans"
+FONT = os.environ.get("DIAGRAM_FONT", "DejaVu Sans")  # any installed font; DejaVu is a broad-coverage default
 LINE_SPACING = 1.18         # gap between text lines, as a multiple of the font size
 ANNOTATION_SCALE = 0.82     # '~' annotation lines are drawn this much smaller than the title
 TITLE_FONT_SIZE = 20

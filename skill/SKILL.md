@@ -10,7 +10,8 @@ Goal: a diagram a reviewer reads at a glance. It must be accurate, use clean str
 The engine: **graphviz computes the layout; cairo draws it.** Graphviz alone forces a bad trade — orthogonal lines OR centered labels, never both. The bundled renderer `gvcairo.py` takes graphviz's geometry and draws every label, title, and annotation itself. It also draws clusters, bold titles, dim annotation lines, reversed arrows, and re-centers each route in its free channel.
 
 ## Environment on this machine
-- Available: `dot` (graphviz), `python3` with `pycairo`, `python-bidi`, `PIL`. Font DejaVu Sans has Hebrew.
+- Available: `dot` (graphviz), and `python3` with `pycairo`, `Pillow`, and `numpy`.
+- Font: DejaVu Sans by default (widely installed, broad Unicode coverage). Override with the `DIAGRAM_FONT` environment variable.
 - NOT available: inkscape, rsvg-convert, cairosvg, chromium, mermaid CLI, drawio CLI.
 - You cannot rasterize an SVG here. Cairo is the only path to a PNG.
 - Use `rtk` for every read and search: `rtk read`, `rtk grep`, `rtk ls`, `rtk find`.
@@ -36,7 +37,6 @@ The engine: **graphviz computes the layout; cairo draws it.** Graphviz alone for
 - Fix the aspect ratio for slides. A 5-to-1 banner is unreadable. Fold peers with `{ rank=same; a; b; }` to reach about 1.3-to-1.4-to-1.
 - Give boxes room. Raise node `margin` (for example `0.24,0.15`), `ranksep`, and `nodesep`.
 - A data direction is a fact, not a guess. Trace the real path. A drone talks to its remote, not to the server.
-- Hebrew or any right-to-left text: pass each line through `python-bidi`'s `get_display` before drawing. Right-align each line. Wrap a long line by word.
 - Copy names verbatim from the source or the owner. Never "correct" a spelling; it may already be in a slide.
 - Iterate with the human. Render, measure, show, fix the one thing named. One correction at a time.
 

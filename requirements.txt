@@ -1,0 +1,8 @@
+# Python packages needed to render and verify (pip install -r requirements.txt)
+pycairo
+Pillow
+numpy
+
+# System dependencies (install with your OS package manager, NOT pip):
+#   graphviz         provides the `dot` binary that computes the layout
+#   a TrueType font  DejaVu Sans by default; override with the DIAGRAM_FONT env var
