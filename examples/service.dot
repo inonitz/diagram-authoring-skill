@@ -1,0 +1,28 @@
+digraph {
+  graph [rankdir=TB, splines=ortho, compound=true, ranksep=0.7, nodesep=0.5,
+         label="Example service"]
+  node  [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=13,
+         margin="0.24,0.15", color="#334155"]
+  edge  [color="#64748b", fontname="DejaVu Sans", fontsize=10]
+
+  client [label="Client\n• web + mobile\n• HTTPS", fillcolor="#dbeafe"]
+  lb     [label="Load balancer\n• TLS terminate\n• round-robin", fillcolor="#e2e8f0"]
+
+  subgraph cluster_be {
+    label="Backend"; bgcolor="#f8fafc"; color="#94a3b8";
+    api   [label="API server\n• REST + auth\n• rate limit\n~app/api.py", fillcolor="#dcfce7"]
+    cache [label="Cache\n• Redis\n• 60 s TTL", fillcolor="#fef9c3"]
+    db    [label="Database\n• Postgres\n• primary + replica", fillcolor="#fce7f3"]
+  }
+
+  worker [label="Worker\n• async jobs\n~app/worker.py", fillcolor="#dcfce7"]
+  queue  [label="Queue\n• task backlog", fillcolor="#fef9c3"]
+
+  client -> lb    [label="request"]
+  lb -> api       [label="proxy"]
+  api -> cache    [label="get / set", dir=both]
+  api -> db       [label="read / write"]
+  api -> queue    [label="enqueue"]
+  queue -> worker [label="dequeue"]
+  worker -> db    [label="write"]
+}

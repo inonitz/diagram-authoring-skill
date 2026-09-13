@@ -1,0 +1,3 @@
+examples/*.routes.json
+__pycache__/
+*.pyc
