@@ -1,8 +1,13 @@
 # diagram-authoring
 
+***NOTES*:   
+A. Some of the README.md has been written by Claude. I edited it to explain my intent, but the dry details are the same  
+B. A/B Testing to measure Slide Quality & Token Costs will be added this week (with/without rtk & the skill)**  
+
+<br></br>
 A Claude Code / Claude Agent **skill** that authors slide-grade architecture and flow diagrams from a
-codebase or a spec. Graphviz computes the layout; cairo draws it. The output is an outlined SVG plus a
-PNG, with clean orthogonal lines, every label centered on its line, and Canva-safe colors.
+codebase or a spec. Graphviz computes the layout; cairo draws it.  
+output is an outlined SVG plus a PNG, with clean orthogonal lines, every label centered on its line, and Canva-safe colors.
 
 ![Example service diagram](examples/service.png)
 
@@ -10,9 +15,12 @@ PNG, with clean orthogonal lines, every label centered on its line, and Canva-sa
 
 ## Why
 
-Graphviz alone forces a bad trade: orthogonal lines **or** centered edge labels, never both. Slide
-tools then choke on graphviz SVG — live `<text>` shifts with fonts, and percentage `rgb()` colors
-break Canva. This skill fixes both. It keeps graphviz's clean geometry, draws the labels itself on the
+Claude is a fucking idiot - ask him to make slides by crawling through a repo (because you're lazy, don't lie to yourself)  
+and he produces hot & steamy garbage that can't be easily fixed. Not only that,   
+using Graphviz as is forces it into a bad trade: orthogonal lines **or** centered edge labels, never both. Slide
+tools then choke on graphviz SVG - live `<text>` shifts with fonts, and percentage `rgb()` colors
+break Canva. This skill fixes all the shenanigans related to that.  
+It keeps graphviz's clean geometry, draws the labels itself on the
 middle of each line, outlines all text to paths (zero `<text>`), and emits hex colors.
 
 ## What you get
@@ -82,7 +90,7 @@ discover and use it), asserts the isolation, pins the model, then runs the with-
 writes a `run.json`; parse it for turns and token usage. See [`benchmark/README.md`](benchmark/README.md).
 
 **Numbers and quality reports are being uploaded through the week** as compute allows. A crawl agent
-is not free — the pilot measured ~2.2 M tokens (incl. cache) per arm — so runs are deliberate.
+is not free — the pilot measured ~2.2 M tokens (incl. cache) per arm — so runs are deliberate (~7$ in API Token Cost with rtk at ~15% efficiency)
 
 ## License
 
