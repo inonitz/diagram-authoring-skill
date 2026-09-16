@@ -109,44 +109,29 @@ because the agent invokes it and runs the full render -> measure -> clean -> ver
 
 ### Before / after
 
-Rendered by each agent, no hand editing. The PNG is shown; the full-resolution vector SVG is linked
-under each (GitHub does not display SVG inline).
+Rendered by each agent with no hand editing. Shown as SVG, so it stays crisp at any zoom.
 
 **Simplified**
 
-<table>
-<tr>
-<td align="center"><b>baseline &mdash; no skill</b></td>
-<td align="center"><b>with skill</b></td>
-</tr>
-<tr>
-<td align="center"><img src="benchmark/results/baseline-simplified.png" width="460"></td>
-<td align="center"><img src="benchmark/results/withskill-simplified.png" width="460"></td>
-</tr>
-<tr>
-<td align="center"><a href="benchmark/results/baseline-simplified.svg">full svg</a></td>
-<td align="center"><a href="benchmark/results/withskill-simplified.svg">full svg</a></td>
-</tr>
-</table>
+baseline (no skill):
+
+<img src="benchmark/results/baseline-simplified.svg" width="760">
+
+with skill:
+
+<img src="benchmark/results/withskill-simplified.svg" width="760">
 
 <br><br>
 
 **Detailed**
 
-<table>
-<tr>
-<td align="center"><b>baseline &mdash; no skill</b></td>
-<td align="center"><b>with skill</b></td>
-</tr>
-<tr>
-<td align="center"><img src="benchmark/results/baseline-detailed.png" width="460"></td>
-<td align="center"><img src="benchmark/results/withskill-detailed.png" width="460"></td>
-</tr>
-<tr>
-<td align="center"><a href="benchmark/results/baseline-detailed.svg">full svg</a></td>
-<td align="center"><a href="benchmark/results/withskill-detailed.svg">full svg</a></td>
-</tr>
-</table>
+baseline (no skill):
+
+<img src="benchmark/results/baseline-detailed.svg" width="760">
+
+with skill:
+
+<img src="benchmark/results/withskill-detailed.svg" width="760">
 
 <br>
 
