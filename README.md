@@ -89,8 +89,70 @@ It hides the skill from the agent's skill dirs for the baseline arm (a headless 
 discover and use it), asserts the isolation, pins the model, then runs the with-skill arm. Each arm
 writes a `run.json`; parse it for turns and token usage. See [`benchmark/README.md`](benchmark/README.md).
 
-**Numbers and quality reports are being uploaded through the week** as compute allows. A crawl agent
-is not free — the pilot measured ~2.2 M tokens (incl. cache) per arm — so runs are deliberate (~7$ in API Token Cost with rtk at ~15% efficiency)
+**Result (2026-09-16, Opus 4.8, one repo, one run per arm).** Target: the OSS
+[Micro-XRCE-DDS-Agent](https://github.com/eProsima/Micro-XRCE-DDS-Agent). The with-skill diagrams were
+substantially cleaner and more readable. The skill is a quality lever, not a token saver: it costs more
+because the agent invokes it and runs the full render -> measure -> clean -> verify -> iterate loop.
+
+### Token usage (from each arm's `run.json`)
+
+| metric | baseline (no skill) | with skill |
+|---|---:|---:|
+| turns | 21 | 54 |
+| input tokens | 32 | 86 |
+| output tokens | 13,637 | 46,808 |
+| cache-create tokens | 107,213 | 123,728 |
+| cache-read tokens | 1,130,341 | 4,202,573 |
+| **total tokens (incl. cache)** | **1,251,223** | **4,373,195** |
+| cost (USD) | $1.98 | $4.51 |
+| wall time | 199 s | 726 s |
+
+### Before / after
+
+Rendered by each agent, no hand editing. The PNG is shown; the full-resolution vector SVG is linked
+under each (GitHub does not display SVG inline).
+
+**Simplified**
+
+<table>
+<tr>
+<td align="center"><b>baseline &mdash; no skill</b></td>
+<td align="center"><b>with skill</b></td>
+</tr>
+<tr>
+<td align="center"><img src="benchmark/results/baseline-simplified.png" width="460"></td>
+<td align="center"><img src="benchmark/results/withskill-simplified.png" width="460"></td>
+</tr>
+<tr>
+<td align="center"><a href="benchmark/results/baseline-simplified.svg">full svg</a></td>
+<td align="center"><a href="benchmark/results/withskill-simplified.svg">full svg</a></td>
+</tr>
+</table>
+
+<br><br>
+
+**Detailed**
+
+<table>
+<tr>
+<td align="center"><b>baseline &mdash; no skill</b></td>
+<td align="center"><b>with skill</b></td>
+</tr>
+<tr>
+<td align="center"><img src="benchmark/results/baseline-detailed.png" width="460"></td>
+<td align="center"><img src="benchmark/results/withskill-detailed.png" width="460"></td>
+</tr>
+<tr>
+<td align="center"><a href="benchmark/results/baseline-detailed.svg">full svg</a></td>
+<td align="center"><a href="benchmark/results/withskill-detailed.svg">full svg</a></td>
+</tr>
+</table>
+
+<br>
+
+Caveats: n = 1 per arm — a single repo and a single run; quality is a visual judgment, not an automated
+score. Isolation is verified: the baseline never invoked the skill (0 Skill calls, no `gvcairo`, no
+`routes.json` in its output). Raw usage is in `benchmark/results/*-run.json`.
 
 ## License
 
